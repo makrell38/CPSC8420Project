@@ -11,7 +11,7 @@ from bax.util.misc_util import dict_to_namespace
 from bax.util.graph import Vertex, backtrack_indices, edges_of_path, jaccard_similarity
 
 class nonDom(Algorithm):
-    """Base class for a BAX Algorithm"""
+    """Class to find non-dominated points"""
     def __init__(
         self,
         params=None,
@@ -23,20 +23,19 @@ class nonDom(Algorithm):
         self.objectives = objectives
 
     def set_params(self, params):
-        """Set self.params, the parameters for the algorithm."""
+        """Set parameters."""
         super().set_params(params)
         params = dict_to_namespace(params)
         self.params.name = getattr(params, "name", "nonDom")
         self.params.x_path = getattr(params, "x_path", [])
 
     def initialize(self):
-        """Initialize algorithm, reset execution path."""
+        """Set execution path."""
         self.exe_path = Namespace(x=[], y=[])
 
     def get_next_x(self):
         """
-        Given the current execution path, return the next x in the execution path. If
-        the algorithm is complete, return None.
+        Return the next x in the algorithm or none if algorithm is done.
         """
         len_path = len(self.exe_path.x)
         x_path = self.params.x_path
@@ -46,8 +45,7 @@ class nonDom(Algorithm):
 
     def run_algorithm_on_f(self, f):
         """
-        Run the algorithm by sequentially querying function f. Return the execution path
-        and output.
+        Run the algorithm traditionally.
         """
         self.initialize()
 
@@ -83,6 +81,9 @@ class nonDom(Algorithm):
         return self.exe_path, output
 
     def dominates(self,p1, p2):
+        """
+        Check if p1 dominates p2.
+        """
         objectives = self.objectives
         better = False
         for i in range(objectives):
@@ -93,7 +94,7 @@ class nonDom(Algorithm):
         return better
 
     def get_exe_path_nondom(self):
-        """Return the index of the optimal point in execution path."""
+        """Return indexes of non-dominated points."""
         
         nonDomarr = []
         nonDomarr.append([valY[0] for valY in self.exe_path.y])
@@ -123,8 +124,7 @@ class nonDom(Algorithm):
 
     def get_exe_path_crop(self):
         """
-        Return the minimal execution path for output, i.e. cropped execution path,
-        specific to this algorithm.
+        Return cropped execution path.
         """
         nonDom_ind = self.get_exe_path_nondom()
         exe_path_crop = Namespace()
@@ -136,11 +136,11 @@ class nonDom(Algorithm):
 
 
     def get_copy(self):
-        """Return a copy of this algorithm."""
+        """Copy the algorithm."""
         return copy.deepcopy(self)
     
     def get_output(self):
-        """Return best path."""
+        """Return the output of the algorithm."""
         nonDom_ind = self.get_exe_path_nondom()
         ret = Namespace()
         ret.x = [self.exe_path.x[idx] for idx in nonDom_ind]
