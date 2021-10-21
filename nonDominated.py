@@ -23,6 +23,8 @@ import neatplot
 neatplot.set_style("fonts")
 neatplot.update_rc('font.size', 20)
 
+plt.rc('text', usetex=False)
+
 seed = 12
 n_init = 1
 n_iter = 20
