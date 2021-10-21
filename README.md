@@ -25,7 +25,7 @@ Before examples can be ran, the following two commands must be ran
 ```
 python bayesian-algorithm-execution/bax/models/stan/compile_models.py
 
-source shell/add_pwd_to_pythonpath.sh
+source bayesian-algorithm-execution/shell/add_pwd_to_pythonpath.sh
 ```
 
 # Run Example
