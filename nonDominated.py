@@ -59,8 +59,8 @@ modelclass = MultiGpfsGp
 
 # Set acquisition details
 acqfn_params = {"acq_str": "exe", "n_path": 100, "crop": True}
-#acq_cls = BaxAcqFunction
-acq_cls = EigfBaxAcqFunction
+acq_cls = BaxAcqFunction
+#acq_cls = EigfBaxAcqFunction
 
 # Set acqopt details
 n_acqopt = 1500
