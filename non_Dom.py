@@ -4,7 +4,8 @@ import heapq
 import numpy as np
 import math
 import random
-
+import sys
+sys.path.append('bayesian-algorithm-execution')
 from bax.alg.algorithms import Algorithm
 from bax.util.misc_util import dict_to_namespace
 from bax.util.graph import Vertex, backtrack_indices, edges_of_path, jaccard_similarity
