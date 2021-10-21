@@ -23,7 +23,7 @@ pip install -r requirements/requirements_gpfs.txt
 
 Before examples can be ran, the following two commands must be ran
 ```
-python bayesian_algorithm_execution/bax/models/stan/compile_models.py
+python bayesian-algorithm-execution/bax/models/stan/compile_models.py
 
 source shell/add_pwd_to_pythonpath.sh
 ```
