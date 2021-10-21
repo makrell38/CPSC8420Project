@@ -1,4 +1,4 @@
-The code in this folder is from https://github.com/willieneis/bayesian-algorithm-execution.git
+The code in this folder is from https://github.com/willieneis/bayesian-algorithm-execution.git for the paper https://arxiv.org/abs/2104.09460
 
 ## Citation
 ```
