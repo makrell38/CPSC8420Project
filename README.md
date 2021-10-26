@@ -1,4 +1,6 @@
 # CPSC8420Project Phase 2
+This code goes along with the paper titled Using BAX for Multi-objective Optimization by Madison Krell. It is implementing choice B, applying the original method to a different field.
+
 This code give an add-on to Bayesian Algorithm Execution (BAX) presented in the paper [Bayesian Algorithm Execution: Estimating Computable Properties of Black-box Functions Using Mutual Information](https://arxiv.org/abs/2104.09460)
 ```
 @inproceedings{neiswanger2021bayesian,
