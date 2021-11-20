@@ -40,7 +40,7 @@ The current number of iterations is set to 20, but can be changed by adjusting t
 # Recommendation
 It is recommended to use an anaconda virtual enviornment. This is not required but can make the installation process easier. Install anaconda, and do the following steps before installing the dependancies
 ```
-conda create --name myenv python=3.6
+conda create --name myenv tensorflow-gpu
 
 conda activate myenv
  ```
