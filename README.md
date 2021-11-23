@@ -45,7 +45,7 @@ To run the example uisng the pssgp method, run the following command
 ```
 python parallel_test.py.py
 ```
-The current number of iterations is set to 20, but can be changed by adjusting the n_iter variable in the file. The plots for each iteration will be saved in parallel_topk_results. 
+The plots will be saved in parallel_topk_results. 
 
 # Recommendation
 It is recommended to use an anaconda virtual enviornment. This is not required but can make the installation process easier. Install anaconda, and do the following steps before installing the dependancies
