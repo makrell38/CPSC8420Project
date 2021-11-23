@@ -1,3 +1,5 @@
+Code in this folder is from Phase 2 of the project. Look at the bayesian_algorithm_execution folder for phase 3 code
+
 The code in this folder is from https://github.com/willieneis/bayesian-algorithm-execution.git for the paper https://arxiv.org/abs/2104.09460
 
 ## Citation
