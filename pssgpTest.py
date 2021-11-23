@@ -86,7 +86,7 @@ acq_cls = BaxAcqFunction
 
 n_acqopt = 1
 
-results_dir = Path("parallel_correct_results")
+results_dir = Path("parallel_topk_results")
 results_dir.mkdir(parents=True, exist_ok=True)
 
 img_dir = results_dir /  f'images'
