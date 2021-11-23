@@ -1,3 +1,0 @@
-[submodule "bayesian_algorithm_execution/bax/models/pgps"]
-	path = bayesian_algorithm_execution/bax/models/pgps
-	url = https://github.com/EEA-sensors/parallel-gps
