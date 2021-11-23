@@ -40,7 +40,7 @@ plt.rc('text', usetex=False)
 seed = 12
 np.random.seed(seed)
 tf.random.set_seed(seed)
-n_iter = 20
+n_iter = 2
 
 
 
@@ -92,6 +92,7 @@ results_dir.mkdir(parents=True, exist_ok=True)
 img_dir = results_dir /  f'images'
 img_dir.mkdir(parents=True, exist_ok=True)
 
+
 for i in range(n_iter):
     # Set model
     model = modelclass(gp_params, data)
@@ -109,14 +110,6 @@ for i in range(n_iter):
 
     # Plot
     fig, ax = plt.subplots(figsize=(6, 6))
-    # -- plot function contour
-    #grid = 0.1
-    #xpts = np.arange(domain[0][0], domain[0][1], grid)
-    #ypts = np.arange(domain[1][0], domain[1][1], grid)
-    #X, Y = np.meshgrid(xpts, ypts)
-    #Z = f_vec(X, Y)
-    #ax.contour(X, Y, Z, 20, cmap=cm.Greens_r, zorder=0)
-    # -- plot top_k
     
     topk_arr = np.array(output_gt.x)
     y_arr = [f(x[0]) for x in topk_arr]
@@ -133,8 +126,6 @@ for i in range(n_iter):
         zorder=1
     )
     # -- plot x_path
-    #x_path_arr = np.array(x_path)
-    #ax.plot(x_path_arr[:, 0], x_path_arr[:, 1], '.', color='#C0C0C0', markersize=8)
     ax.plot(X, Y, 'o', color='k', markersize=8)
     # -- plot observations
     for x in data.x:
@@ -155,7 +146,7 @@ for i in range(n_iter):
     # Save plot
     img_path = img_dir / f'topk_{i}'
     neatplot.save_figure(str(img_path), 'pdf')
-    """
+    
     # Query function, update data
 
     
@@ -164,17 +155,10 @@ for i in range(n_iter):
     data.y = np.append(data.y, [y_next])
     data.x = data.x.reshape(-1,1)
     
-    #data.x = data.x.tolist()
-    #data.y = data.y.reshape(-1,1)
-    """
-    #data.x.append(x_next)
-    #data.y.append(y_next)
 
-#results.data = data
 
 # Pickle results
 file_str = f"topk.pkl"
 with open(results_dir / file_str, "wb") as handle:
     #pickle.dump(results, handle)
     print(f"Saved results file: {results_dir}/{file_str}")
-    
