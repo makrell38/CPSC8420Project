@@ -81,12 +81,12 @@ data.y = np.asarray(data.y)
 gp_params = {"ls": 2.5, "alpha": 20.0, "sigma": 1e-2, "n_dimx": n_dim}
 modelclass = ParGpfsGp
 
-acqfn_params = {"acq_str": "exe", "n_path": 1, "crop": True}
+acqfn_params = {"acq_str": "exe", "n_path": 100, "crop": True}
 acq_cls = BaxAcqFunction
 
 n_acqopt = 1
 
-results_dir = Path("parallel_topk_results")
+results_dir = Path("parallel_correct_results")
 results_dir.mkdir(parents=True, exist_ok=True)
 
 img_dir = results_dir /  f'images'
@@ -109,9 +109,15 @@ for i in range(n_iter):
 
     # Plot
     fig, ax = plt.subplots(figsize=(6, 6))
-
+    # -- plot function contour
+    #grid = 0.1
+    #xpts = np.arange(domain[0][0], domain[0][1], grid)
+    #ypts = np.arange(domain[1][0], domain[1][1], grid)
+    #X, Y = np.meshgrid(xpts, ypts)
+    #Z = f_vec(X, Y)
+    #ax.contour(X, Y, Z, 20, cmap=cm.Greens_r, zorder=0)
     # -- plot top_k
-
+    
     topk_arr = np.array(output_gt.x)
     y_arr = [f(x[0]) for x in topk_arr]
 
@@ -120,13 +126,15 @@ for i in range(n_iter):
         y_arr,
         '*',
         marker='D',
-        markersize=30,
-        color='C',
+        markersize=15,
+        color='c',
         markeredgecolor='black',
         markeredgewidth=0.05,
         zorder=1
     )
     # -- plot x_path
+    #x_path_arr = np.array(x_path)
+    #ax.plot(x_path_arr[:, 0], x_path_arr[:, 1], '.', color='#C0C0C0', markersize=8)
     ax.plot(X, Y, 'o', color='k', markersize=8)
     # -- plot observations
     for x in data.x:
@@ -142,23 +150,31 @@ for i in range(n_iter):
         )
     # -- lims, labels, titles, etc
     #ax.set(xlim=domain[0], ylim=domain[1])
-    ax.set_title("Parallel InfoBAX with Top-k Algorithm")
+    ax.set_title("Parallel InfoBAX with Top-$k$ Algorithm")
 
     # Save plot
     img_path = img_dir / f'topk_{i}'
     neatplot.save_figure(str(img_path), 'pdf')
-    
+    """
     # Query function, update data
 
+    
     y_next = f(x_next[0])
-
     data.x = np.append(data.x, [x_next])
     data.y = np.append(data.y, [y_next])
     data.x = data.x.reshape(-1,1)
+    
+    #data.x = data.x.tolist()
+    #data.y = data.y.reshape(-1,1)
+    """
+    #data.x.append(x_next)
+    #data.y.append(y_next)
 
-
+#results.data = data
 
 # Pickle results
 file_str = f"topk.pkl"
 with open(results_dir / file_str, "wb") as handle:
+    #pickle.dump(results, handle)
     print(f"Saved results file: {results_dir}/{file_str}")
+    
