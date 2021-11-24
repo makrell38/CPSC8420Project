@@ -44,7 +44,7 @@ n_iter = 2
 
 
 
-f = lambda x: math.sin(x*math.pi) + math.sin(2 * math.pi * x) + math.sin(3 * math.pi * x)
+f = lambda x: 2* np.abs(x[0]) * np.sin(x[0])
 
 n_dim = 1
 domain = [[1, 10]] * n_dim
