@@ -112,7 +112,7 @@ for i in range(n_iter):
     fig, ax = plt.subplots(figsize=(6, 6))
     
     topk_arr = np.array(output_gt.x)
-    y_arr = [f(x[0]) for x in topk_arr]
+    y_arr = [f(x) for x in topk_arr]
 
     ax.plot(
         topk_arr[:, 0],
@@ -129,13 +129,13 @@ for i in range(n_iter):
     ax.plot(X, Y, 'o', color='k', markersize=8)
     # -- plot observations
     for x in data.x:
-        ax.scatter(x[0], f(x[0]), color='r', s=80)
+        ax.scatter(x[0], f(x), color='r', s=80)
     # -- plot x_next
-    ax.scatter(x_next[0], f(x_next[0]), color='g', s=80, zorder=10)
+    ax.scatter(x_next[0], f(x_next), color='g', s=80, zorder=10)
     # -- plot estimated output
     for out in acqfn.output_list:
         out_arr = np.array(out.x)
-        y_out_arr = [f(x[0]) for x in out_arr]
+        y_out_arr = [f(x) for x in out_arr]
         ax.plot(
             out_arr[:, 0], y_out_arr, 's', markersize=8, color='m', alpha=0.02
         )
@@ -150,7 +150,7 @@ for i in range(n_iter):
     # Query function, update data
 
     
-    y_next = f(x_next[0])
+    y_next = f(x_next)
     data.x = np.append(data.x, [x_next])
     data.y = np.append(data.y, [y_next])
     data.x = data.x.reshape(-1,1)
