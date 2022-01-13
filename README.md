@@ -1,5 +1,5 @@
 # CPSC8420Project Phase 3
-This code goes along with the paper titled Applying Logarithmic Time Gaussian Process Regression To BAX by Madison Krell, makrell@clemson.edu. 
+This code is for CPSC8420 Advanced Machine Learning.
 
 This code apply the process from https://github.com/EEA-sensors/parallel-gps for the paper https://arxiv.org/abs/2102.09964
 ## Citation
